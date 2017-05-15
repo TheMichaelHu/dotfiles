@@ -1,0 +1,7 @@
+[alias]
+	co = checkout
+	cob = checkout -b
+	diffh = diff HEAD^ HEAD
+[user]
+	name = Michael Hu
+	email = michaelanhu@gmail.com
