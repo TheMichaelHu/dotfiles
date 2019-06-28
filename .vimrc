@@ -1,5 +1,5 @@
 set nocompatible
-
+set noshowmode
 filetype off                  " required
 
 " set the runtime path to include Vundle and initialize
@@ -13,17 +13,26 @@ Plugin 'VundleVim/Vundle.vim'
 
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
-Plugin 'tpope/vim-surround'
-Plugin 'scrooloose/syntastic'
-Plugin 'altercation/vim-colors-solarized'
 Plugin 'kien/ctrlp.vim'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'tpope/vim-surround'
+Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'altercation/vim-colors-solarized'
+Plugin 'vim-python/python-syntax'
 Plugin 'vim-airline/vim-airline'
+Plugin 'vim-airline/vim-airline-themes'
+Plugin 'junegunn/fzf'
+Plugin 'junegunn/fzf.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+let g:python_highlight_all = 1
+let g:airline#extensions#tabline#enabled = 1
+let g:airline_theme='base16'
+let g:airline_powerline_fonts = 1
 
 set backspace=indent,eol,start
 set tabstop=4
