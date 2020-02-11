@@ -1,6 +1,11 @@
 set nocompatible
 set noshowmode
-filetype off                  " required
+filetype off
+set tabstop=4
+set expandtab
+set shiftwidth=4
+set spell
+set so=999
 
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
@@ -11,10 +16,12 @@ call vundle#begin()
 " let Vundle manage Vundle, required
 Plugin 'VundleVim/Vundle.vim'
 
+" The following are examples of different formats supported.
+" Keep Plugin commands between vundle#begin/end.
+" plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
 Plugin 'scrooloose/nerdtree'
 Plugin 'kien/ctrlp.vim'
-Plugin 'airblade/vim-gitgutter'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
@@ -30,21 +37,55 @@ call vundle#end()            " required
 filetype plugin indent on    " required
 
 let g:python_highlight_all = 1
+
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_theme='base16'
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#buffer_nr_show = 1
+let g:airline#extensions#tabline#fnamemod = ':t'
 
-set backspace=indent,eol,start
-set tabstop=4
-set shiftwidth=4
-set expandtab
+noremap <C-K> :FormatLines<CR>
+inoremap <C-K> <C-O>:FormatLines<CR>
+
+filetype plugin indent on
+syntax on
 set number
-syntax enable
-
-let g:solarized_termcolors=256
 set background=dark
+let g:solarized_termcolors=256
 colorscheme solarized
-set term=screen-256color
-set t_ut=
+" autocmd vimenter * NERDTree
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_check_on_wq = 1
+let g:syntastic_error_symbol = "✗"
+let g:syntastic_python_checkers=["gpylint"]
+let g:syntastic_python_checker_args = "--rcfile=~/.gpylintrc"
+let vim_markdown_preview_github=1
 
-autocmd vimenter * NERDTree
+set clipboard=unnamedplus
+
+set hidden
+let mapleader = " "
+" buffers custom commands
+nmap <leader>T :enew<cr>
+nmap <leader>l :bnext<CR>
+nmap <leader>h :bprevious<CR>
+nmap <leader>bq :bp <BAR> bd #<CR>
+nmap <leader>bl :ls<CR>
+
+" ctrlp
+let g:ctrlp_custom_ignore = {
+  \ 'dir':  '\v[\/](\.(git|hg|svn)|\_site)$',
+  \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
+\}
+let g:ctrlp_working_path_mode = 'r'
+nmap <leader>p :CtrlP<cr>
+nmap <leader>bb :CtrlPBuffer<cr>
+nmap <leader>bm :CtrlPMixed<cr>
+nmap <leader>bs :CtrlPMRU<cr>
+
+" Damian conway video
+highlight ColorColumn ctermbg=gray
+call matchadd("ColorColumn", "\\%81v.", 100)
+exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
+set list
+nnoremap ; :
