@@ -1,12 +1,3 @@
-set nocompatible
-set noshowmode
-filetype off
-set tabstop=4
-set expandtab
-set shiftwidth=4
-set spell
-set so=999
-
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
@@ -31,10 +22,19 @@ Plugin 'vim-airline/vim-airline'
 Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
+Plugin 'chriskempson/base16-vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
 filetype plugin indent on    " required
+
+set nocompatible
+set noshowmode
+filetype off
+set tabstop=4
+set expandtab
+set shiftwidth=4
+set so=999
 
 let g:python_highlight_all = 1
 
@@ -51,8 +51,11 @@ filetype plugin indent on
 syntax on
 set number
 set background=dark
-let g:solarized_termcolors=256
-colorscheme solarized
+if filereadable(expand("~/.vimrc_background"))
+  let base16colorspace=256
+  source ~/.vimrc_background
+endif
+
 " autocmd vimenter * NERDTree
 let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_check_on_wq = 1
@@ -78,10 +81,12 @@ let g:ctrlp_custom_ignore = {
   \ 'file': '\v\.(exe|so|dll|class|png|jpg|jpeg)$',
 \}
 let g:ctrlp_working_path_mode = 'r'
-nmap <leader>p :CtrlP<cr>
+"nmap <leader>p :CtrlP<cr>
 nmap <leader>bb :CtrlPBuffer<cr>
 nmap <leader>bm :CtrlPMixed<cr>
 nmap <leader>bs :CtrlPMRU<cr>
+
+map <leader>p :setlocal paste!<cr>
 
 " Damian conway video
 highlight ColorColumn ctermbg=gray
@@ -89,3 +94,13 @@ call matchadd("ColorColumn", "\\%81v.", 100)
 exec "set listchars=tab:\uBB\uBB,trail:\uB7,nbsp:~"
 set list
 nnoremap ; :
+
+" Jump to next error
+nmap <leader>e :lnext<CR>
+nmap <leader>E :lprev<CR>
+
+" Move between windows
+map <C-j> <C-W>j
+map <C-k> <C-W>k
+map <C-h> <C-W>h
+map <C-l> <C-W>l
