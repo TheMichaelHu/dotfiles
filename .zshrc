@@ -16,7 +16,7 @@ export PATH="$(python -m site --user-base)/bin:$PATH"
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
 # Path to your oh-my-zsh installation.
-  export ZSH="/usr/local/google/home/humichael/.oh-my-zsh"
+export ZSH="/home/humichael/.oh-my-zsh"
 
 # Set name of the theme to load. Optionally, if you set this to "random"
 # it'll load a random theme each time that oh-my-zsh is loaded.
@@ -112,8 +112,6 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-source /etc/bash_completion.d/g4d
-
 # added by Anaconda3 installer
 # export PATH="/usr/local/google/home/humichael/anaconda3/bin:$PATH"  # commented out by conda initialize
 export CUDA_HOME=/usr/local/cuda-9.0
@@ -127,18 +125,17 @@ export TERM=screen-256color
 
 # >>> conda initialize >>>
 # !! Contents within this block are managed by 'conda init' !!
-__conda_setup="$('/usr/local/google/home/humichael/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+__conda_setup="$('/home/humichael/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
 if [ $? -eq 0 ]; then
     eval "$__conda_setup"
 else
-    if [ -f "/usr/local/google/home/humichael/anaconda3/etc/profile.d/conda.sh" ]; then
-        . "/usr/local/google/home/humichael/anaconda3/etc/profile.d/conda.sh"
+    if [ -f "/home/humichael/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/home/humichael/anaconda3/etc/profile.d/conda.sh"
     else
-        export PATH="/usr/local/google/home/humichael/anaconda3/bin:$PATH"
+        export PATH="/home/humichael/anaconda3/bin:$PATH"
     fi
 fi
 unset __conda_setup
-conda config --set changeps1 False
 # <<< conda initialize <<<
 
 # To customize prompt, run `p10k configure` or edit ~/.p10k.zsh.
@@ -161,3 +158,5 @@ bindkey -M viins '^[[A' history-beginning-search-backward-end \
                  '^[OB' history-beginning-search-forward-end
 
 export P4DIFF='git diff --no-index'
+
+base16_default-dark
