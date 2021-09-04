@@ -16,6 +16,7 @@ Plugin 'kien/ctrlp.vim'
 Plugin 'tpope/vim-surround'
 Plugin 'scrooloose/syntastic'
 Plugin 'scrooloose/nerdcommenter'
+Plugin 'xuyuanp/nerdtree-git-plugin'
 Plugin 'altercation/vim-colors-solarized'
 Plugin 'vim-python/python-syntax'
 Plugin 'vim-airline/vim-airline'
@@ -23,6 +24,11 @@ Plugin 'vim-airline/vim-airline-themes'
 Plugin 'junegunn/fzf'
 Plugin 'junegunn/fzf.vim'
 Plugin 'chriskempson/base16-vim'
+Plugin 'puremourning/vimspector'
+Plugin 'szw/vim-maximizer'
+
+" Python plugins
+Plugin 'tmhedberg/SimpylFold'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -35,6 +41,7 @@ set tabstop=4
 set expandtab
 set shiftwidth=4
 set so=999
+set incsearch
 
 let g:python_highlight_all = 1
 
@@ -104,3 +111,29 @@ map <C-j> <C-W>j
 map <C-k> <C-W>k
 map <C-h> <C-W>h
 map <C-l> <C-W>l
+
+" folding
+set foldmethod=indent
+set foldlevel=99
+let g:SimpylFold_docstring_preview=1
+
+" NERDTree
+nnoremap <Leader>f :NERDTreeToggle<Enter>
+nnoremap <silent> <Leader>v :NERDTreeFind<CR>
+let NERDTreeIgnore=['\.pyc$', '\~$']
+let NERDTreeMinimalUI = 1
+let NERDTreeDirArrows = 1
+let NERDTreeAutoDeleteBuffer = 1
+let NERDTreeQuitOnOpen = 1
+" Open NERDTree if no other buffers were opened.
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists('s:std_in') | NERDTree | endif
+" Close NERDTree if all other buffers were closed.
+autocmd bufenter * if (winnr('$') == 1 && exists('b:NERDTreeType') && b:NERDTreeType == 'primary') | q | endif
+
+" Debugging
+nnoremap <Leader>z :MaximizerToggle<Enter>
+
+" Line highlight
+set cursorline
+hi CursorLineNR cterm=NONE ctermfg=yellow
