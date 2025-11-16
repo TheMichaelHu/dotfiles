@@ -137,3 +137,6 @@ nnoremap <Leader>z :MaximizerToggle<Enter>
 " Line highlight
 set cursorline
 hi CursorLineNR cterm=NONE ctermfg=yellow
+
+let base16colorspace=256  " Access colors present in 256 colorspace
+colorscheme base16-default-dark
